@@ -70,20 +70,18 @@
         <script>
         document.addEventListener("DOMContentLoaded", () => {
   const toggleContainer = document.getElementById("theme-toggle-container");
-  const currentTheme = localStorage.getItem("theme") || "light";
-  
-  
+  let currentTheme = localStorage.getItem("theme") || "light";
+
   document.body.classList.add(currentTheme);
 
   toggleContainer.addEventListener("click", () => {
-    
-    const newTheme = document.body.classList.contains("light") ? "dark" : "light";
+    const newTheme = currentTheme === "light" ? "dark" : "light";
 
-    
     document.body.classList.replace(currentTheme, newTheme);
 
-    
     localStorage.setItem("theme", newTheme);
+
+    currentTheme = newTheme;  // <-- Update currentTheme here
   });
 });
 
